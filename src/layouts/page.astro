@@ -1,0 +1,85 @@
+---
+import '@/styles/main.css'
+import './page.css';
+import Noscript from "@/components/noscript.astro";
+
+const {
+  title,
+  description,
+  hash,
+} = Astro.props
+
+const split = title.indexOf('-') > -1
+
+---
+
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title} | juji</title>
+  </head>
+  <body>
+    <h2 class="title">{split ? title.split('-').map((v,i) => {
+      return i ? <>-</><span>{v}</span> : v
+    }) : title}</h2>
+    <div class="canvas-container">
+      <canvas id="canvas"></canvas>
+    </div>
+    <button class="about" aria-label={`About ${title}`}>about</button>
+    <div class="info">
+      <button class="info-close">&times;</button>
+      <div class="info-content">
+        <slot />
+      </div>
+    </div>
+    <a href={hash} class="back" aria-label="Back to Home">
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      ><path
+        d="M20.3284 11.0001V13.0001L7.50011 13.0001L10.7426 16.2426L9.32842 17.6568L3.67157 12L9.32842 6.34314L10.7426 7.75735L7.49988 11.0001L20.3284 11.0001Z"
+        fill="currentColor"
+      /></svg>
+    </a>
+    <div class="plus-minus">
+      <button class="plus">
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M12 4C11.4477 4 11 4.44772 11 5V11H5C4.44772 11 4 11.4477 4 12C4 12.5523 4.44772 13 5 13H11V19C11 19.5523 11.4477 20 12 20C12.5523 20 13 19.5523 13 19V13H19C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11H13V5C13 4.44772 12.5523 4 12 4Z"
+            fill="currentColor"
+          />
+        </svg>
+      </button>
+      <button class="minus">
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M4 12C4 11.4477 4.44772 11 5 11H19C19.5523 11 20 11.4477 20 12C20 12.5523 19.5523 13 19 13H5C4.44772 13 4 12.5523 4 12Z"
+            fill="currentColor"
+          />
+        </svg>
+      </button>
+    </div>
+    <div id="progress"></div>
+    <Noscript />
+  </body>
+</html>

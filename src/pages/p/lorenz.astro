@@ -1,0 +1,42 @@
+---
+import Page from '@/layouts/page.astro'
+---
+
+<Page
+  title="Lorenz"
+  description="Lorenz Attractor"
+  hash="/#lorenz"
+>
+<p>
+  The Lorenz system is a system of ordinary differential equations 
+  first studied by mathematician and meteorologist Edward Lorenz. 
+</p>
+<p>
+  In popular media the "butterfly effect" stems from the real-world 
+  implications of the Lorenz attractor, 
+  namely that several different initial chaotic conditions evolve in phase 
+  space in a way that never repeats, so all chaos is unpredictable.
+</p>
+<p>
+  Source: <a target="_blank" rel="noreferrer" href="https://en.wikipedia.org/wiki/Lorenz_system">Wikipedia</a>
+</p>
+<p>
+  Code: <a target="_blank" rel="noreferrer" 
+  href="https://github.com/juji/attractors/blob/main/src/plotters/lorenz.ts">
+  Github</a>
+</p>
+</Page>
+
+<script>
+  import { init as initUi } from '@/lib/ui'
+  import Lorenz from '@/lib/plotters/lorenz'
+  import start from '@/lib/three'
+
+  const onProgress = initUi()
+  start({
+    canvas: document.querySelector('canvas#canvas') as HTMLCanvasElement,
+    plotter: new Lorenz(),
+    onProgress,
+    scale: 10,
+  })
+</script>

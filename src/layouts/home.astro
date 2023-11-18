@@ -1,0 +1,30 @@
+---
+import '@/styles/main.css'
+import './home.scss';
+import Footer from "@/components/footer.astro";
+import Noscript from "@/components/noscript.astro";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Some code to fill the time: Attractors." />
+    <title>Attractors | juji</title>
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <a href="/">
+          <img src="/logo.svg" alt="juji playing with attractors"  />
+          <span>ATTRCTRS</span>
+        </a>
+      </header>
+      <slot />
+      <Footer />
+      <Noscript />
+		</div>
+	</body>
+</html>

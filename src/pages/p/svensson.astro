@@ -1,0 +1,49 @@
+---
+import Page from '@/layouts/page.astro'
+---
+
+<Page
+  title="Svensson"
+  description="Svensson Attractor"
+  hash="/#svensson"
+>
+<p>
+  The Johnny Svensson Attractor (created by Johnny Svensson) is a twist on the 
+  <a href="https://www.google.com/search?q=Peter+de+Jong+attractor" 
+    target="_blank"
+    rel="noreferrer">Peter de Jong attractor</a>.
+</p>
+<p>
+  Source: <a target="_blank" rel="noreferrer" 
+    href="https://sequelaencollection.home.blog/2d-chaotic-attractors/">
+    sequelaencollection.home.blog</a>
+</p>
+<p>Sadly, Johnny Svensson does not live in Mordor.</p>
+<p>
+  Code: <a target="_blank" rel="noreferrer" 
+  href="https://github.com/juji/attractors/blob/main/src/plotters/svensson.ts">
+  Github</a>
+</p>
+</Page>
+
+<script>
+  import { init as initUi } from '@/lib/ui'
+  import Svensson from '@/lib/plotters/svensson'
+  import start from '@/lib/two'
+
+  const onProgress = initUi()
+  start({
+    canvas: document.querySelector('canvas#canvas') as HTMLCanvasElement,
+    plotter: new Svensson(),
+    scale: 100,
+    itterationPerCycle: 2500,
+    totalCycle: 400,
+    onProgress,
+    transform: (x:number, y:number) => {
+      return [
+        x*0.5,
+        y
+      ]
+    }
+  })
+</script>

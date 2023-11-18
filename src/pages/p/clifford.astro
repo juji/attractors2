@@ -1,0 +1,48 @@
+---
+import Page from '@/layouts/page.astro'
+---
+
+<Page
+  title="Clifford"
+  description="Clifford Attractor"
+  hash="/#clifford"
+>
+<p>
+  Clifford attractors are a type of iterative equation that traces the path of a 
+  particle through a 2D space using functions of sine and cosine terms that make 
+  interesting "attractor" patterns (covering only some portions of the possible space, 
+  in certain shapes).
+</p>
+<p>
+  Source: <a target="_blank" rel="noreferrer" 
+    href="https://examples.holoviz.org/attractors/clifford_panel.html">
+    holoviz.org</a>
+</p>
+<p>
+  Code: <a target="_blank" rel="noreferrer" 
+  href="https://github.com/juji/attractors/blob/main/src/plotters/clifford.ts">
+  Github</a>
+</p>
+</Page>
+
+<script>
+  import { init as initUi } from '@/lib/ui'
+  import Clifford from '@/lib/plotters/clifford'
+  import start from '@/lib/two'
+
+  const onProgress = initUi()
+  start({
+    canvas: document.querySelector('canvas#canvas') as HTMLCanvasElement,
+    plotter: new Clifford(),
+    scale: 150,
+    itterationPerCycle: 2500,
+    totalCycle: 400,
+    onProgress,
+    transform: (x:number, y:number) => {
+      return [
+        x*0.72,
+        y
+      ]
+    }
+  })
+</script>

@@ -1,0 +1,40 @@
+---
+import Page from '@/layouts/page.astro'
+---
+
+<Page
+  title="Halvorsen"
+  description="Halvorsen Attractor"
+  hash="/#halvorsen"
+>
+<p>
+  Triangles are interesting, and we do appreciate things that comes rarely.
+  I found my self looking at this one, waiting for a triangular-star with the swirl shape to show itself.
+</p>
+<p>
+  Attribution: <a target="_blank" rel="noreferrer" href="https://www.vorillaz.com/halvorsen-attractor/">www.vorillaz.com</a>
+</p>
+<p>
+  Code: <a target="_blank" rel="noreferrer" 
+  href="https://github.com/juji/attractors/blob/main/src/plotters/halvorsen.ts">
+  Github</a>
+</p>
+</Page>
+
+<script>
+  import { init as initUi } from '@/lib/ui'
+  import Halvorsen from '@/lib/plotters/halvorsen'
+  import start from '@/lib/three'
+
+  const onProgress = initUi()
+  start({
+    canvas: document.querySelector('canvas#canvas') as HTMLCanvasElement,
+    plotter: new Halvorsen(),
+    onProgress,
+    scale: 15,
+    rotateX: true,
+    rotateY: true,
+    itterationPerCycle: 30,
+    totalCycle: 1000
+  })
+</script>

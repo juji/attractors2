@@ -1,0 +1,47 @@
+---
+import Page from '@/layouts/page.astro'
+---
+
+<Page
+  title="Rayleigh-Benard"
+  description="Rayleigh-Benard Attractor"
+  hash="/#rayleigh-benard"
+>
+<p>
+  Rayleigh-Benard. Upon creating this one, It struck me: Why does the shape of butterfly comes up often?
+  What is it about butterfly? Are they the secret guardians of the world..?
+</p>
+<p>This one looks like Lorenz's.</p>
+
+<div style="width:100%;height:0;padding-bottom:41%;position:relative;">
+  <iframe src="https://giphy.com/embed/RnnPrNRmrF0wTgA3az" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p>
+    <a style="font-size: 8px" href="https://giphy.com/gifs/RnnPrNRmrF0wTgA3az">via GIPHY</a></p>
+<!-- <p>
+  <img 
+  style="width: 100%; height: auto;"
+  src="/images/the-interview-same-here.gif" alt="same but different but still same meme" />
+</p> -->
+<p>
+  Code: <a target="_blank" rel="noreferrer" 
+  href="https://github.com/juji/attractors/blob/main/src/plotters/rayleigh-benard.ts">
+  Github</a>
+</p>
+</Page>
+
+<script>
+  import { init as initUi } from '@/lib/ui'
+  import RayleighBenard from '@/lib/plotters/rayleigh-benard'
+  import start from '@/lib/three'
+
+  const onProgress = initUi()
+  start({
+    canvas: document.querySelector('canvas#canvas') as HTMLCanvasElement,
+    plotter: new RayleighBenard(),
+    onProgress,
+    scale: 4,
+    rotateX: true,
+    rotateY: true,
+    itterationPerCycle: 30,
+    totalCycle: 1000
+  })
+</script>

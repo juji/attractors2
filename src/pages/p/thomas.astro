@@ -1,0 +1,50 @@
+---
+import Page from '@/layouts/page.astro'
+---
+
+<Page
+  title="Thomas"
+  description="Thomas Attractor"
+  hash="/#thomas"
+>
+<p>
+  In the dynamical systems theory, 
+  Thomas' cyclically symmetric attractor is a 3D strange attractor 
+  originally proposed by René Thomas. 
+  It has a simple form which is cyclically symmetric in the x,y, 
+  and z variables and can be viewed as the trajectory of a frictionally 
+  dampened particle moving in a 3D lattice of forces. 
+  The simple form has made it a popular example.
+</p>
+<p>
+  Source: <a target="_blank" rel="noreferrer" 
+  href="https://en.wikipedia.org/wiki/Thomas%27_cyclically_symmetric_attractor">
+  wikipedia.org</a>
+</p>
+<p>
+  For me, it looks like Voldermort's magic.
+</p>
+<p>
+  Code: <a target="_blank" rel="noreferrer" 
+  href="https://github.com/juji/attractors/blob/main/src/plotters/thomas.ts">
+  Github</a>
+</p>
+</Page>
+
+<script>
+  import { init as initUi } from '@/lib/ui'
+  import Thomas from '@/lib/plotters/thomas'
+  import start from '@/lib/three'
+
+  const onProgress = initUi()
+  start({
+    canvas: document.querySelector('canvas#canvas') as HTMLCanvasElement,
+    plotter: new Thomas(),
+    opacity: 0.3,
+    scale: 50,
+    itterationPerCycle: 1000,
+    totalCycle: 1000,
+    onProgress,
+    rotateX: true,
+  })
+</script>

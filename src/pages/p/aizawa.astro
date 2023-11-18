@@ -1,0 +1,50 @@
+---
+import Page from '@/layouts/page.astro'
+---
+
+<Page
+  title="Aizawa"
+  description="Aizawa Attractor"
+  hash="/#aizawa"
+>
+  <p>
+    The Aizawa attractor is a system of equations that, 
+    when applied iteratively on three-dimensional coordinates, 
+    evolves in such a way as to have the resulting coordinates 
+    map out a three dimensional shape, in this case a sphere with a tube-like 
+    structure penetrating one of it's axis.
+  </p>
+  <p>
+    Source: <a target="_blank" rel="noreferrer" 
+      href="https://www.algosome.com/articles/aizawa-attractor-chaos.html">
+      www.algosome.com</a>
+  </p>
+  <p>
+    Code: <a target="_blank" rel="noreferrer" 
+    href="https://github.com/juji/attractors/blob/main/src/plotters/aizawa.ts">
+    Github</a>
+  </p>
+</Page>
+
+<script>
+  import { init as initUi } from '@/lib/ui'
+  import Aizawa from '@/lib/plotters/aizawa'
+  import start from '@/lib/three'
+
+  const onProgress = initUi()
+  start({
+    canvas: document.querySelector('canvas#canvas') as HTMLCanvasElement,
+    plotter: new Aizawa(),
+    scale: 110,
+    itterationPerCycle: 10,
+    totalCycle: 2000,
+    onProgress,
+    transform: (x:number, y:number, z:number) => {
+      return [
+        y,
+        z - 100,
+        x
+      ]
+    }
+  })
+</script>

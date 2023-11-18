@@ -1,0 +1,43 @@
+---
+import Page from '@/layouts/page.astro'
+---
+
+<Page
+  title="Tinkerbell"
+  description="Tinkerbell Attractor"
+  hash="/#tinkerbell"
+>
+<p>
+  The Tinkerbell, it looks like a creature with butterfly wings. 
+  Some people think this is a 2d projection of a 3d object.
+  We may never know..
+</p>
+<p>
+  Code: <a target="_blank" rel="noreferrer" 
+  href="https://github.com/juji/attractors/blob/main/src/plotters/tinkerbell.ts">
+  Github</a>
+</p>
+</Page>
+
+<script>
+  import { init as initUi } from '@/lib/ui'
+  import Tinkerbell from '@/lib/plotters/tinkerbell'
+  import start from '@/lib/two'
+
+  const onProgress = initUi()
+  start({
+    canvas: document.querySelector('canvas#canvas') as HTMLCanvasElement,
+    plotter: new Tinkerbell(),
+    scale: 300,
+    itterationPerCycle: 2500,
+    totalCycle: 400,
+    onProgress,
+    alpha: 0.2,
+    transform: (x:number, y:number) => {
+      return [
+        x,
+        y + 150
+      ]
+    }
+  })
+</script>

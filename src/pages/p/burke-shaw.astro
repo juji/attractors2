@@ -1,0 +1,43 @@
+---
+import Page from '@/layouts/page.astro'
+---
+
+<Page
+  title="Burke-Shaw"
+  description="Burke-Shaw Attractor"
+  hash="/#burke-shaw"
+>
+<p>
+  The Burke-Shaw attractor is related to the Lorenz attractor and 
+  credited to Bill Burke and Robert Shaw.
+</p>
+<p>
+  Source: <a target="_blank" rel="noreferrer" 
+    href="https://paulbourke.net/fractals/burkeshaw/">
+    paulbourke.net</a>
+</p>
+<p>
+  Somebody should make this a 3d racetrack.
+</p>
+<p>
+  Code: <a target="_blank" rel="noreferrer" 
+  href="https://github.com/juji/attractors/blob/main/src/plotters/burke-shaw.ts">
+  Github</a>
+</p>
+</Page>
+
+<script>
+  import { init as initUi } from '@/lib/ui'
+  import BurkeShaw from '@/lib/plotters/burke-shaw'
+  import start from '@/lib/three'
+
+  const onProgress = initUi()
+  start({
+    canvas: document.querySelector('canvas#canvas') as HTMLCanvasElement,
+    plotter: new BurkeShaw(),
+    scale: 150,
+    itterationPerCycle: 20,
+    totalCycle: 500,
+    onProgress,
+  })
+</script>

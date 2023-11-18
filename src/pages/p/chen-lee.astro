@@ -1,0 +1,42 @@
+---
+import Page from '@/layouts/page.astro'
+---
+
+<Page
+  title="Chen-Lee"
+  description="Chen-Lee Attractor"
+  hash="/#chen-lee"
+>
+<p>
+  The chaotic Chen-Lee system was developed with a formalism based on the Euler equations for the motion of a rigid body. It was proved that this system is the governing set of equations for gyro motion with feedback control.
+</p>
+<p>
+  Source: <a target="_blank" rel="noreferrer" 
+    href="https://www.vorillaz.com/chen-lee-attractor/">
+    www.vorillaz.com</a>
+</p>
+<p>
+  Code: <a target="_blank" rel="noreferrer" 
+  href="https://github.com/juji/attractors/blob/main/src/plotters/chen-lee.ts">
+  Github</a>
+</p>
+</Page>
+
+<script>
+  import { init as initUi } from '@/lib/ui'
+  import ChenLee from '@/lib/plotters/chen-lee'
+  import start from '@/lib/three'
+
+  const onProgress = initUi()
+  start({
+    canvas: document.querySelector('canvas#canvas') as HTMLCanvasElement,
+    plotter: new ChenLee(),
+    scale: 10,
+    itterationPerCycle: 1000,
+    totalCycle: 200,
+    onProgress,
+    rotateX: true,
+    rotateY: true,
+    opacity: 0.5
+  })
+</script>

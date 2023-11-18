@@ -1,0 +1,59 @@
+
+#app{
+  display: flex;
+  flex-direction: column;
+}
+
+header{
+  
+  position: sticky;
+  top:0;
+  left:0;
+  z-index: 1;
+
+  &>a{
+    display: grid;
+    grid-template-columns: min-content min-content;
+    align-items: center;
+    text-decoration: none;
+    color: red;
+
+    &>img{
+      width: 34px;
+      height: 34px;
+    }
+
+    &>span{
+      font-family: 'Righteous', sans-serif;
+      padding: 0 0.5rem;
+      font-size: 2rem;
+      line-height: 34px;
+      background: white;
+    }
+
+    @media screen and (min-width: 332px){
+      &>img{
+        width: 55px;
+        height: 55px;
+      }
+
+      &>span{
+        padding: 0 1rem;
+        font-size: 3rem;
+        line-height: 55px;
+      }
+    }
+  }
+}
+
+@keyframes image {
+  from {
+    transform: translateY(21px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
