@@ -1,5 +1,6 @@
 ---
 import Page from '@/layouts/page.astro'
+import { githubPlotter } from '@/lib/utils'
 ---
 
 <Page
@@ -21,7 +22,7 @@ import Page from '@/layouts/page.astro'
 <p>Sadly, Johnny Svensson does not live in Mordor.</p>
 <p>
   Code: <a target="_blank" rel="noreferrer" 
-  href="https://github.com/juji/attractors/blob/main/src/plotters/svensson.ts">
+  href={githubPlotter("svensson.ts")}>
   Github</a>
 </p>
 </Page>

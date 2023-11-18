@@ -1,5 +1,6 @@
 ---
 import Page from '@/layouts/page.astro'
+import { githubPlotter } from '@/lib/utils'
 ---
 
 <Page
@@ -26,7 +27,7 @@ import Page from '@/layouts/page.astro'
 </p>
 <p>
   Code: <a target="_blank" rel="noreferrer" 
-  href="https://github.com/juji/attractors/blob/main/src/plotters/thomas.ts">
+  href={githubPlotter("thomas.ts")}>
   Github</a>
 </p>
 </Page>
