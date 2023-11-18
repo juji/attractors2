@@ -24,7 +24,7 @@ const split = title.indexOf('-') > -1
     <title>{title} | juji</title>
   </head>
   <body>
-    <h2 class="title">{split ? title.split('-').map((v,i) => {
+    <h2 class="title">{split ? title.split('-').map((v:string,i:number) => {
       return i ? <>-</><span>{v}</span> : v
     }) : title}</h2>
     <div class="canvas-container">
