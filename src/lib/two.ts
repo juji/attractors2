@@ -1,6 +1,8 @@
 
 import { Plotter } from './plotters/plotter';
 import { debounceReset } from './debounce-reset';
+import { init as initUi } from '@/lib/ui'
+
 export type TransformFunction = (x:number, y:number) => [number, number]
 
 //
@@ -32,6 +34,37 @@ function defaultDraw(
 
 }
 
+function zoomFunctions(
+  canvas: HTMLCanvasElement
+){
+
+  let scale = 1
+  const delta = 0.1
+  const maxScale = 2
+  const minScale = 0.1
+
+  const zoomIn = () => {
+    scale = Math.min(scale + delta, maxScale)
+    canvas.style.transform = `translate3d(-50%, -50%, 0) scale(${scale})`
+    return {
+      plus: scale !== maxScale,
+      minus: scale !== minScale
+    }
+  }
+  
+  const zoomOut = () => {
+    scale = Math.max(scale - delta, minScale)
+    canvas.style.transform = `translate3d(-50%, -50%, 0) scale(${scale})`
+    return {
+      plus: scale !== maxScale,
+      minus: scale !== minScale
+    }
+  }
+
+  return { zoomIn, zoomOut }
+
+}
+
 export default function start({
   canvas,
   plotter,
@@ -39,7 +72,6 @@ export default function start({
   itterationPerCycle,
   totalCycle,
   transform,
-  onProgress,
   alpha
 }:{
   canvas: HTMLCanvasElement
@@ -48,7 +80,6 @@ export default function start({
   itterationPerCycle?: number
   totalCycle?: number
   transform?: TransformFunction
-  onProgress?: (num: number) => void
   alpha?: number
 }){  
 
@@ -57,10 +88,13 @@ export default function start({
   let itt = itterationPerCycle || 3;
   let cycle = totalCycle || 5000;
   let transformFunc = transform || defaultTransform;
-
+  
   const total = itt * cycle
   let progress = 0
   let running = true
+
+  const { zoomIn, zoomOut } = zoomFunctions(canvas)
+  const onProgress = initUi({ zoomIn, zoomOut })
 
   const context = canvas.getContext('2d') as CanvasRenderingContext2D
   canvas.width = window.innerWidth * 3
@@ -133,49 +167,6 @@ export default function start({
   }
 
   animate();
-
-  function activateZoomButton(){
-
-    const plus = document.querySelector('button.plus')
-    const minus = document.querySelector('button.minus')
-    let scale = 1
-    const delta = 0.1
-    const maxScale = 2
-    const minScale = 0.1
-
-    if(!plus || !minus || !canvas) return;
-
-    const zoomIn = () => {
-      scale = Math.min(scale + delta, maxScale)
-      canvas.style.transform = `translate3d(-50%, -50%, 0) scale(${scale})`
-
-      if(scale === maxScale){
-        plus.setAttribute('disabled','')
-      }
-      if(scale > minScale){
-        minus.removeAttribute('disabled')
-      }
-    }
-    
-    const zoomOut = () => {
-      scale = Math.max(scale - delta, minScale)
-      canvas.style.transform = `translate3d(-50%, -50%, 0) scale(${scale})`
-
-      if(scale === minScale){
-        minus.setAttribute('disabled','')
-      }
-      if(scale < maxScale){
-        plus.removeAttribute('disabled')
-      }
-    }
-
-    plus.addEventListener('click', zoomIn)
-    minus.addEventListener('click', zoomOut)
-
-
-  }
-
-  activateZoomButton()
 
 }
 

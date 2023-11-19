@@ -21,18 +21,15 @@ import { githubPlotter } from '@/lib/utils'
 </Page>
 
 <script>
-  import { init as initUi } from '@/lib/ui'
   import Tinkerbell from '@/lib/plotters/tinkerbell'
   import start from '@/lib/two'
 
-  const onProgress = initUi()
   start({
     canvas: document.querySelector('canvas#canvas') as HTMLCanvasElement,
     plotter: new Tinkerbell(),
     scale: 300,
     itterationPerCycle: 2500,
     totalCycle: 400,
-    onProgress,
     alpha: 0.2,
     transform: (x:number, y:number) => {
       return [

@@ -24,15 +24,12 @@ import { githubPlotter } from '@/lib/utils'
 </Page>
 
 <script>
-  import { init as initUi } from '@/lib/ui'
   import Tsucs from '@/lib/plotters/tsucs'
   import start from '@/lib/three'
 
-  const onProgress = initUi()
   start({
     canvas: document.querySelector('canvas#canvas') as HTMLCanvasElement,
     plotter: new Tsucs(),
-    onProgress,
     scale: 3,
     rotateX: true,
     rotateY: true,

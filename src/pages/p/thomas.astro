@@ -33,11 +33,9 @@ import { githubPlotter } from '@/lib/utils'
 </Page>
 
 <script>
-  import { init as initUi } from '@/lib/ui'
   import Thomas from '@/lib/plotters/thomas'
   import start from '@/lib/three'
 
-  const onProgress = initUi()
   start({
     canvas: document.querySelector('canvas#canvas') as HTMLCanvasElement,
     plotter: new Thomas(),
@@ -45,7 +43,6 @@ import { githubPlotter } from '@/lib/utils'
     scale: 50,
     itterationPerCycle: 1000,
     totalCycle: 1000,
-    onProgress,
     rotateX: true,
   })
 </script>

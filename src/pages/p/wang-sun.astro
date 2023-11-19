@@ -23,17 +23,14 @@ import { githubPlotter } from '@/lib/utils'
 </Page>
 
 <script>
-  import { init as initUi } from '@/lib/ui'
   import WangSun from '@/lib/plotters/wang-sun'
   import start from '@/lib/three'
 
-  const onProgress = initUi()
   start({
     canvas: document.querySelector('canvas#canvas') as HTMLCanvasElement,
     plotter: new WangSun(),
     scale: 100,
     itterationPerCycle: 100,
     totalCycle: 3000,
-    onProgress,
   })
 </script>

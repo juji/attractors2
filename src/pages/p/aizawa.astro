@@ -28,18 +28,15 @@ import { githubPlotter } from '@/lib/utils'
 </Page>
 
 <script>
-  import { init as initUi } from '@/lib/ui'
   import Aizawa from '@/lib/plotters/aizawa'
   import start from '@/lib/three'
 
-  const onProgress = initUi()
   start({
     canvas: document.querySelector('canvas#canvas') as HTMLCanvasElement,
     plotter: new Aizawa(),
     scale: 110,
     itterationPerCycle: 10,
     totalCycle: 2000,
-    onProgress,
     transform: (x:number, y:number, z:number) => {
       return [
         y,

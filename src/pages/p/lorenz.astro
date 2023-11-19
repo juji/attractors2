@@ -29,15 +29,12 @@ import { githubPlotter } from '@/lib/utils'
 </Page>
 
 <script>
-  import { init as initUi } from '@/lib/ui'
   import Lorenz from '@/lib/plotters/lorenz'
   import start from '@/lib/three'
 
-  const onProgress = initUi()
   start({
     canvas: document.querySelector('canvas#canvas') as HTMLCanvasElement,
     plotter: new Lorenz(),
-    onProgress,
     scale: 10,
   })
 </script>

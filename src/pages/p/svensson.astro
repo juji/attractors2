@@ -28,18 +28,15 @@ import { githubPlotter } from '@/lib/utils'
 </Page>
 
 <script>
-  import { init as initUi } from '@/lib/ui'
   import Svensson from '@/lib/plotters/svensson'
   import start from '@/lib/two'
 
-  const onProgress = initUi()
   start({
     canvas: document.querySelector('canvas#canvas') as HTMLCanvasElement,
     plotter: new Svensson(),
     scale: 100,
     itterationPerCycle: 2500,
     totalCycle: 400,
-    onProgress,
     transform: (x:number, y:number) => {
       return [
         x*0.5,

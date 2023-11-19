@@ -93,7 +93,7 @@ export function randomizeText({
   anchorElm.forEach(elm => {
 
     const textElm = elm.querySelector(text) as HTMLSpanElement
-    console.log(textElm)
+    // console.log(textElm)
     textElm.setAttribute('data-text', textElm.innerText)
     textElm.innerText = ''
 

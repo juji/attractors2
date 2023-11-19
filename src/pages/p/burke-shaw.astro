@@ -28,17 +28,14 @@ import { githubPlotter } from '@/lib/utils'
 </Page>
 
 <script>
-  import { init as initUi } from '@/lib/ui'
   import BurkeShaw from '@/lib/plotters/burke-shaw'
   import start from '@/lib/three'
 
-  const onProgress = initUi()
   start({
     canvas: document.querySelector('canvas#canvas') as HTMLCanvasElement,
     plotter: new BurkeShaw(),
     scale: 150,
     itterationPerCycle: 20,
     totalCycle: 500,
-    onProgress,
   })
 </script>

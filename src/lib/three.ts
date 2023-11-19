@@ -1,11 +1,40 @@
 import * as THREE from 'three';
 import { type Plotter } from './plotters/plotter';
 import { debounceReset } from '@/lib/debounce-reset';
+import { init as initUi } from '@/lib/ui'
 
 export type TransformFunction = (x:number, y:number, z:number) => [number, number, number]
 
 function defaultTransform(x:number, y:number, z: number){
   return [x,y,z];
+}
+
+function zoomFunctions(
+  camera: THREE.PerspectiveCamera
+){
+
+  const maxZ = 800
+  const minZ = 300
+  const delta = 50
+
+  const zoomIn = () => {
+    camera.position.z = Math.max(camera.position.z - delta, minZ)
+    return {
+      plus: camera.position.z !== minZ,
+      minus: camera.position.z !== maxZ
+    }
+  }
+  
+  const zoomOut = () => {
+    camera.position.z = Math.min(camera.position.z + delta, maxZ)
+    return {
+      plus: camera.position.z !== minZ,
+      minus: camera.position.z !== maxZ
+    }
+  }
+
+  return { zoomIn, zoomOut }
+
 }
 
 
@@ -16,7 +45,6 @@ export default function start({
   itterationPerCycle,
   totalCycle,
   transform,
-  onProgress,
   opacity = 0.9,
   rotateX = false,
   rotateY = true
@@ -27,7 +55,6 @@ export default function start({
   itterationPerCycle?: number,
   totalCycle?: number,
   transform?: TransformFunction,
-  onProgress?: (num: number) => void
   opacity?: number,
   rotateX?: boolean
   rotateY?: boolean
@@ -35,6 +62,9 @@ export default function start({
   
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+  
+  const { zoomIn, zoomOut } = zoomFunctions(camera)
+  const onProgress = initUi({ zoomIn, zoomOut })
 
   const renderer = new THREE.WebGLRenderer({
     canvas,
@@ -123,44 +153,6 @@ export default function start({
   }
 
   animate();
-
-  function activateZoomButton(){
-
-    const plus = document.querySelector('button.plus')
-    const minus = document.querySelector('button.minus')
-    const maxZ = 800
-    const minZ = 300
-    const delta = 50
-
-    if(!plus || !minus) return;
-
-    const zoomIn = () => {
-      camera.position.z = Math.max(camera.position.z - delta, minZ)
-      if(camera.position.z === minZ){
-        plus.setAttribute('disabled','')
-      }
-      if(camera.position.z < maxZ){
-        minus.removeAttribute('disabled')
-      }
-    }
-    
-    const zoomOut = () => {
-      camera.position.z = Math.min(camera.position.z + delta, maxZ)
-      if(camera.position.z === maxZ){
-        minus.setAttribute('disabled','')
-      }
-      if(camera.position.z > minZ){
-        plus.removeAttribute('disabled')
-      }
-    }
-
-    plus.addEventListener('click', zoomIn)
-    minus.addEventListener('click', zoomOut)
-
-
-  }
-
-  activateZoomButton()
 
 }
 

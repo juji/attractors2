@@ -23,15 +23,12 @@ import { githubPlotter } from '@/lib/utils'
 </Page>
 
 <script>
-  import { init as initUi } from '@/lib/ui'
   import Halvorsen from '@/lib/plotters/halvorsen'
   import start from '@/lib/three'
 
-  const onProgress = initUi()
   start({
     canvas: document.querySelector('canvas#canvas') as HTMLCanvasElement,
     plotter: new Halvorsen(),
-    onProgress,
     scale: 15,
     rotateX: true,
     rotateY: true,

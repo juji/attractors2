@@ -30,15 +30,12 @@ import { githubPlotter } from '@/lib/utils'
 </Page>
 
 <script>
-  import { init as initUi } from '@/lib/ui'
   import RayleighBenard from '@/lib/plotters/rayleigh-benard'
   import start from '@/lib/three'
 
-  const onProgress = initUi()
   start({
     canvas: document.querySelector('canvas#canvas') as HTMLCanvasElement,
     plotter: new RayleighBenard(),
-    onProgress,
     scale: 4,
     rotateX: true,
     rotateY: true,

@@ -27,18 +27,15 @@ import { githubPlotter } from '@/lib/utils'
 </Page>
 
 <script>
-  import { init as initUi } from '@/lib/ui'
   import Clifford from '@/lib/plotters/clifford'
   import start from '@/lib/two'
 
-  const onProgress = initUi()
   start({
     canvas: document.querySelector('canvas#canvas') as HTMLCanvasElement,
     plotter: new Clifford(),
     scale: 150,
     itterationPerCycle: 2500,
     totalCycle: 400,
-    onProgress,
     transform: (x:number, y:number) => {
       return [
         x*0.72,
