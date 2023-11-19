@@ -14,22 +14,36 @@ function zoomFunctions(
 ){
 
   const maxZ = 800
-  const minZ = 300
-  const delta = 50
+  const minZ = 100
+  const delta = 100
+  let currentZ = camera.position.z
+  let targetZ = camera.position.z
+
+  function animateZ(){
+    if(Math.abs(currentZ - targetZ) <= 0.1) {
+      currentZ = targetZ 
+    }else{
+      currentZ += (targetZ - currentZ ) / 10
+      requestAnimationFrame( animateZ );
+    }
+    camera.position.z = currentZ
+  }
 
   const zoomIn = () => {
-    camera.position.z = Math.max(camera.position.z - delta, minZ)
+    targetZ = Math.max(camera.position.z - delta, minZ)
+    animateZ()
     return {
-      plus: camera.position.z !== minZ,
-      minus: camera.position.z !== maxZ
+      plus: targetZ !== minZ,
+      minus: targetZ !== maxZ
     }
   }
   
   const zoomOut = () => {
-    camera.position.z = Math.min(camera.position.z + delta, maxZ)
+    targetZ = Math.min(camera.position.z + delta, maxZ)
+    animateZ()
     return {
-      plus: camera.position.z !== minZ,
-      minus: camera.position.z !== maxZ
+      plus: targetZ !== minZ,
+      minus: targetZ !== maxZ
     }
   }
 
@@ -62,10 +76,10 @@ export default function start({
   
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-  
+  camera.position.z = 500;
+
   const { zoomIn, zoomOut } = zoomFunctions(camera)
   const onProgress = initUi({ zoomIn, zoomOut })
-
   const renderer = new THREE.WebGLRenderer({
     canvas,
     alpha: true,
@@ -89,7 +103,6 @@ export default function start({
     plotter.z
   ]
 
-  camera.position.z = 500;
   let idx = 0
   let scaleNum = scale || 10
   let itt = itterationPerCycle || 3;

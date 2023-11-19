@@ -39,7 +39,7 @@ function zoomFunctions(
 ){
 
   let scale = 1
-  const delta = 0.1
+  const delta = 0.2
   const maxScale = 2
   const minScale = 0.1
 

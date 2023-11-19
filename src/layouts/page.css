@@ -21,6 +21,7 @@ canvas{
   transform: translate3d(-50%, -50%, 0);
   width: 300%;
   height: 300%;
+  transition: transform 200ms;
 }
 
 #progress{
