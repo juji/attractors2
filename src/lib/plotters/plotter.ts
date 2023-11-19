@@ -13,7 +13,7 @@ export class Plotter {
     initY: number, 
     initZ?: number
   ){
-    this.init = [ initX, initY, initZ?initZ:0 ]
+    this.init = [ initX, initY, initZ??0 ]
     this.x = this.init[0]; 
     this.y = this.init[1];
     this.z = this.init[2]; 
