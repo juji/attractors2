@@ -9,9 +9,11 @@ export default class ChenLee extends Plotter {
   dt: number = 0.001
 
   constructor(){
-    super(
-      1, 1, 2
-    )
+    super({
+      x: 1, 
+      y: 1, 
+      z: 2
+    })
   }
   
   calculate():[number, number, number]{

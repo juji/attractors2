@@ -12,9 +12,11 @@ export default class Tsucs extends Plotter {
   dt: number = 0.001
 
   constructor(){
-    super(
-      1, 0, 0
-    )
+    super({
+      x: 1, 
+      y: 0, 
+      z: 0
+    })
   }
   
   calculate():[number, number, number]{

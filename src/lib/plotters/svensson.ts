@@ -9,7 +9,10 @@ export default class Svensson extends Plotter {
   d: number = -6.56; 
 
   constructor(){
-    super(0,0)
+    super({
+      x: 0,
+      y: 0
+    })
   }
 
   reset(){

@@ -8,9 +8,11 @@ export default class RayleighBenard extends Plotter {
   dt: number = 0.01
 
   constructor(){
-    super(
-      0.1, 0, 0
-    )
+    super({
+      x: 0.1, 
+      y: 0, 
+      z: 0
+    })
   }
   
   calculate():[number, number, number]{

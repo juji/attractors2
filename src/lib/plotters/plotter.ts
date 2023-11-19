@@ -8,15 +8,15 @@ export class Plotter {
   init: [number, number, number];
 
   // can be 3d or 2d
-  constructor(
-    initX: number, 
-    initY: number, 
-    initZ?: number
-  ){
-    this.init = [ initX, initY, initZ??0 ]
-    this.x = this.init[0]; 
-    this.y = this.init[1];
-    this.z = this.init[2]; 
+  constructor({x, y, z}:{
+    x: number, 
+    y: number, 
+    z?: number
+  }){
+    this.init = [ x, y, z??0 ]
+    this.x = x;
+    this.y = y;
+    this.z = z??0;
   }
 
   reset(){

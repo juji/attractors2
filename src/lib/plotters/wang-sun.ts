@@ -12,9 +12,11 @@ export default class WangSun extends Plotter {
   dt: number = 0.01;
 
   constructor(){
-    super(
-      1, 1, 1
-    )
+    super({
+      x: 1, 
+      y: 1, 
+      z: 1
+    })
   }
   
   calculate():[number, number, number]{

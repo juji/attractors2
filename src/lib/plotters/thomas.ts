@@ -5,7 +5,11 @@ export default class BurkeShaw extends Plotter {
   b: number = 0.21;
 
   constructor(){
-    super(-0.23, -0.82, -0.4)
+    super({
+      x: -0.23, 
+      y: -0.82, 
+      z: -0.4
+    })
   }
   
   

@@ -8,7 +8,10 @@ export default class Clifford extends Plotter {
   d: number = 0.5;
 
   constructor(){
-    super(0.1, 0.1)
+    super({
+      x: 0.1, 
+      y: 0.1
+    })
   }
   
   calculate():[number, number]{

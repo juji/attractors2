@@ -9,7 +9,10 @@ export default class Clifford extends Plotter {
   d: number = -1; 
 
   constructor(){
-    super(0, 0)
+    super({
+      x: 0, 
+      y: 0
+    })
   }
 
   reset(){
