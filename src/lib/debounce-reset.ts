@@ -6,11 +6,11 @@ export function debounceReset(
   timeout: number = 100 
 ){
   
-  let resetting: boolean | ReturnType<typeof setTimeout> = false;
+  let resetting: false | ReturnType<typeof setTimeout> = false;
   
   window.addEventListener("resize", (/* event */) => {
     initResize()
-    if(resetting) clearTimeout(resetting as ReturnType<typeof setTimeout>)
+    if(resetting) clearTimeout(resetting)
     resetting = setTimeout(() => {
       resetting = false
       onResize()

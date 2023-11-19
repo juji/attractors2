@@ -138,7 +138,6 @@ export default function start({
 
     const plus = document.querySelector('button.plus')
     const minus = document.querySelector('button.minus')
-    const canvas = document.querySelector('canvas')
     let scale = 1
     const delta = 0.1
     const maxScale = 2
