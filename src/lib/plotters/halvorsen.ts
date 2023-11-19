@@ -17,13 +17,13 @@ export default class Halvorsen extends Plotter {
       x, y, z, a, dt
     } = this
 
-    const xt = -a * x - 4 * y - 4 * z - y * y;
-    const yt = -a * y - 4 * z - 4 * x - z * z;
-    const zt = -a * z - 4 * x - 4 * y - x * x;
+    const dx = -a * x - 4 * y - 4 * z - y * y;
+    const dy = -a * y - 4 * z - 4 * x - z * z;
+    const dz = -a * z - 4 * x - 4 * y - x * x;
 
-    this.x += dt * xt;
-    this.y += dt * yt;
-    this.z += dt * zt;
+    this.x += dt * dx;
+    this.y += dt * dy;
+    this.z += dt * dz;
 
     return [
       this.x, 

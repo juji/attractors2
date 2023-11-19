@@ -20,13 +20,13 @@ export default class ChenLee extends Plotter {
       x, y, z, a, b, d, dt
     } = this
 
-    const xt = a * x - y * z
-    const yt = b * y + x * z
-    const zt = d * z + (x * y) / 3
+    const dx = a * x - y * z
+    const dy = b * y + x * z
+    const dz = d * z + (x * y) / 3
 
-    this.x += dt * xt;
-    this.y += dt * yt;
-    this.z += dt * zt;
+    this.x += dt * dx;
+    this.y += dt * dy;
+    this.z += dt * dz;
 
     return [
       this.x, 

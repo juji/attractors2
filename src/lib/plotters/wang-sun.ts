@@ -23,13 +23,13 @@ export default class WangSun extends Plotter {
       x, y, z, a, b, c, d, e, f, dt
     } = this
 
-    const xt = (a * x) + (c * y * z);
-    const yt = (b * x) + (d * y) - (x * z);
-    const zt = (e * z) + (f * x * y);
+    const dx = (a * x) + (c * y * z);
+    const dy = (b * x) + (d * y) - (x * z);
+    const dz = (e * z) + (f * x * y);
 
-    this.x += dt * xt;
-    this.y += dt * yt;
-    this.z += dt * zt;
+    this.x += dt * dx;
+    this.y += dt * dy;
+    this.z += dt * dz;
 
     return [
       this.x, 

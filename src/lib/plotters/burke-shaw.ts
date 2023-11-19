@@ -17,13 +17,13 @@ export default class BurkeShaw extends Plotter {
       x, y, z, s, v
     } = this
 
-    const xt = -s * ( x + y )
-    const yt = -y - ( s * x * z )
-    const zt = ( s * x * y ) + v
+    const dx = -s * ( x + y )
+    const dy = -y - ( s * x * z )
+    const dz = ( s * x * y ) + v
 
-    this.x += this.dt * xt;
-    this.y += this.dt * yt;
-    this.z += this.dt * zt;
+    this.x += this.dt * dx;
+    this.y += this.dt * dy;
+    this.z += this.dt * dz;
 
     return [
       this.x, 

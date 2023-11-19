@@ -15,13 +15,13 @@ export default class BurkeShaw extends Plotter {
       x, y, z, b
     } = this
 
-    const xt = Math.sin(y) - (b*x)
-    const yt = Math.sin(z) - (b*y)
-    const zt = Math.sin(x) - (b*z)
+    const dx = Math.sin(y) - (b*x)
+    const dy = Math.sin(z) - (b*y)
+    const dz = Math.sin(x) - (b*z)
 
-    this.x += xt;
-    this.y += yt;
-    this.z += zt;
+    this.x += dx;
+    this.y += dy;
+    this.z += dz;
 
     return [
       this.x, 

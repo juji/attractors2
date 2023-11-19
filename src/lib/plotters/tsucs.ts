@@ -23,13 +23,13 @@ export default class Tsucs extends Plotter {
       x, y, z, a, b, c, d, e, dt
     } = this
 
-    const xt = a * ( y - x ) + c * x * z
-    const yt = e * y - x * z
-    const zt = b * z + (x * y) - d * x**2;
+    const dx = a * ( y - x ) + c * x * z
+    const dy = e * y - x * z
+    const dz = b * z + (x * y) - d * x**2;
 
-    this.x += dt * xt;
-    this.y += dt * yt;
-    this.z += dt * zt;
+    this.x += dt * dx;
+    this.y += dt * dy;
+    this.z += dt * dz;
 
     return [
       this.x, 

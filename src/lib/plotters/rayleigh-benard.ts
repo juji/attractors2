@@ -19,13 +19,13 @@ export default class RayleighBenard extends Plotter {
       x, y, z, a, r, b, dt
     } = this
 
-    const xt = (-a * x) + (a * y);
-    const yt = (r * x) - y - (x * z);
-    const zt = (x * y) - (b * z);
+    const dx = (-a * x) + (a * y);
+    const dy = (r * x) - y - (x * z);
+    const dz = (x * y) - (b * z);
 
-    this.x += dt * xt;
-    this.y += dt * yt;
-    this.z += dt * zt;
+    this.x += dt * dx;
+    this.y += dt * dy;
+    this.z += dt * dz;
 
     return [
       this.x, 

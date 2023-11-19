@@ -23,12 +23,12 @@ export default class Aizawa extends Plotter {
       x, y, z, a, b, c, d, e, f, dt
     } = this
 
-    const xt = dt * ((z - b) * x - d*y);
-    const yt = dt * (d*x+(z-b)*y);
-    const zt = dt * (c + a*z - (z**3)/3 - (x**2 + y**2)*(1+e*z) + f * z * x**3);
-    this.x += xt;
-    this.y += yt;
-    this.z += zt;
+    const dx = dt * ((z - b) * x - d*y);
+    const dy = dt * (d*x+(z-b)*y);
+    const dz = dt * (c + a*z - (z**3)/3 - (x**2 + y**2)*(1+e*z) + f * z * x**3);
+    this.x += dx;
+    this.y += dy;
+    this.z += dz;
 
     return [
       this.x, 
