@@ -96,17 +96,20 @@ export default function start({
   const { zoomIn, zoomOut } = zoomFunctions(canvas)
   const onProgress = initUi({ zoomIn, zoomOut })
 
+  let smallScreen = window.innerWidth < 768 || window.innerHeight < 662
+
   const context = canvas.getContext('2d') as CanvasRenderingContext2D
-  canvas.width = window.innerWidth
-  canvas.height = window.innerHeight
+  canvas.width = window.innerWidth * (smallScreen ? 2 : 1)
+  canvas.height = window.innerHeight * (smallScreen ? 2 : 1)
   context.translate(canvas.width/2, canvas.height/2);
 
   debounceReset(() => {
     
     running = false;
     onProgress && onProgress( 0 )
-    canvas.width = window.innerWidth
-    canvas.height = window.innerHeight
+    smallScreen = window.innerWidth < 768 || window.innerHeight < 662
+    canvas.width = window.innerWidth * (smallScreen ? 2 : 1)
+    canvas.height = window.innerHeight * (smallScreen ? 2 : 1)
     
   },() => {
     
