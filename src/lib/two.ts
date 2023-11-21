@@ -97,8 +97,8 @@ export default function start({
   const onProgress = initUi({ zoomIn, zoomOut })
 
   const context = canvas.getContext('2d') as CanvasRenderingContext2D
-  canvas.width = window.innerWidth * 3
-  canvas.height = window.innerHeight * 3
+  canvas.width = window.innerWidth
+  canvas.height = window.innerHeight
   context.translate(canvas.width/2, canvas.height/2);
 
   debounceReset(() => {
