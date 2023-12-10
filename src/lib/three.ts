@@ -75,7 +75,7 @@ export default function start({
 }){
   
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+  const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 5000 );
   camera.position.z = 500;
 
   const { zoomIn, zoomOut } = zoomFunctions(camera)
